@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shidra Siddiqui - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+ 
+        :root {
+            --primary: #FF6B9D;
+            --secondary: #C44569;
+            --cyan: #00D4FF;
+            --pink: #FF10F0;
+            --purple: #9B59B6;
+            --dark: #0a0a0a;
+            --accent: #FFD700;
+        }
+ 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--dark);
+            overflow-x: hidden;
+        }
+ 
+        html {
+            scroll-behavior: smooth;
+        }
+ 
+        /* Enhanced Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e, #0f0f23);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+        }
+ 
+        .bg-animation::before,
+        .bg-animation::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: floatBubble 15s infinite ease-in-out;
+        }
+ 
+        .bg-animation::before {
+            background: var(--cyan);
+            top: -100px;
+            left: -100px;
+        }
+ 
+        .bg-animation::after {
+            background: var(--pink);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 7s;
+        }
+ 
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+ 
+        @keyframes floatBubble {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -100px) scale(1.2); }
+            66% { transform: translate(-50px, 100px) scale(0.8); }
+        }
+ 
+        /* Enhanced Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: navGlow 4s ease-in-out infinite alternate;
+        }
+ 
+        @keyframes navGlow {
+            from { box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2); }
+            to { box-shadow: 0 8px 32px rgba(255, 16, 240, 0.2); }
+        }
+ 
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+ 
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+ 
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+ 
+        nav a:hover::before {
+            left: 100%;
+        }
+ 
+        nav a:hover {
+            background: linear-gradient(135deg, var(--cyan), var(--pink));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 16, 240, 0.4);
+        }
+ 
+        /* Enhanced Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+ 
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--cyan), var(--pink), var(--purple), var(--accent));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            text-shadow: 0 0 30px rgba(255, 16, 240, 0.5);
+            letter-spacing: 2px;
+        }
+ 
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+ 
+        .hero .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+ 
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+ 
+        .hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+        }
+ 
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+ 
+        .cta-button {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--cyan), var(--pink));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 25px rgba(255, 16, 240, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+ 
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+ 
+        .cta-button:hover::before {
+            left: 100%;
+        }
+ 
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 40px rgba(255, 16, 240, 0.6);
+        }
+ 
+        /* Enhanced Section Styling */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+ 
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--cyan), var(--pink), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(255, 16, 240, 0.3);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+ 
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+            to { text-shadow: 0 0 20px rgba(255, 16, 240, 0.3); }
+        }
+ 
+        /* Enhanced Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+ 
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--pink));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+ 
+        .glass-card:hover::before {
+            transform: scaleX(1);
+        }
+ 
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(255, 16, 240, 0.3);
+            border-color: rgba(255, 16, 240, 0.2);
+        }
+ 
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+ 
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 3px solid var(--cyan);
+            transition: all 0.3s;
+        }
+ 
+        .contact-item:hover {
+            border-left-color: var(--pink);
+            transform: translateX(5px);
+        }
+ 
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+ 
+        .skill-card {
+            text-align: center;
+            cursor: pointer;
+        }
+ 
+        .skill-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+ 
+        .skill-card:hover .skill-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+ 
+        .skill-card h3 {
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+ 
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 4rem;
+        }
+ 
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--cyan), var(--pink));
+            box-shadow: 0 0 10px rgba(255, 16, 240, 0.2);
+        }
+ 
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+ 
+        .timeline-item::before {
+            content: '●';
+            position: absolute;
+            left: -4.5rem;
+            top: 0;
+            font-size: 2rem;
+            color: var(--cyan);
+            animation: dotPulse 2s infinite;
+        }
+ 
+        @keyframes dotPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+ 
+        .timeline-date {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--cyan), var(--pink));
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+ 
+        .timeline-item h3 {
+            color: var(--cyan);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+ 
+        .timeline-item h4 {
+            color: var(--pink);
+            margin-bottom: 1rem;
+        }
+ 
+        /* Education Grid */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+ 
+        .edu-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+ 
+        .edu-card h3 {
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+ 
+        .edu-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+ 
+        .percentage-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--cyan), var(--pink));
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: auto;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 16, 240, 0.3);
+            transition: all 0.3s;
+        }
+ 
+        .edu-card:hover .percentage-badge {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 16, 240, 0.4);
+        }
+ 
+        /* Language Bars */
+        .language-container {
+            display: grid;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+ 
+        .language-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--cyan);
+        }
+ 
+        .progress-bar-container {
+            height: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+ 
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan), var(--pink));
+            border-radius: 10px;
+            box-shadow: 0 0 20px var(--cyan);
+            transition: width 2s ease-in-out;
+            position: relative;
+        }
+ 
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+ 
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+ 
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+ 
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--cyan), var(--pink));
+        }
+ 
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .education-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+ 
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .education-grid { grid-template-columns: 1fr; }
+            .timeline { padding-left: 2rem; }
+            .timeline-item::before { left: -2.3rem; }
+            nav { padding: 0.8rem 1rem; }
+            .section-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+ 
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">🏠 Home</a></li>
+            <li><a href="#about">👤 About</a></li>
+            <li><a href="#skills">⚡ Skills</a></li>
+            <li><a href="#experience">💼 Experience</a></li>
+            <li><a href="#education">🎓 Education</a></li>
+            <li><a href="#languages">🌍 Languages</a></li>
+        </ul>
+    </nav>
+ 
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div>
+            <h1> SIDDIQUI</h1>
+            <p class="subtitle">✨ Content Creator & Designer ✨</p>
+            <p class="description">Transforming Ideas into Visual Masterpieces</p>
+            <div class="cta-buttons">
+                <a href="#about" class="cta-button">Explore My Work 🚀</a>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me 💫</h2>
+        <div class="about-grid">
+            <div class="glass-card">
+                <h3 style="color: var(--cyan); font-size: 1.8rem; margin-bottom: 1rem;">🎯 Career Objective</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                    Ambitious, career-focused job seeker, anxious to obtain an entry-level <strong>Data Operator</strong> position to help launch career while achieving company goals.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    Passionate about creating engaging content and delivering high-quality designs on time. I specialize in creating posters, e-pamphlets, and other designs using <strong>Canva</strong> for marketing and promotions. My goal is to develop content that connects with the target audience and improves brand visibility while delivering high-quality designs on time.
+                </p>
+            </div>
+            <div class="glass-card">
+                <h3 style="color: var(--pink); font-size: 1.8rem; margin-bottom: 1.5rem;">📞 Contact Information</h3>
+                <div class="contact-item">
+                    <span style="font-size: 1.5rem;">📱</span>
+                    <span>9336035708</span>
+                </div>
+                <div class="contact-item">
+                    <span style="font-size: 1.5rem;">✉️</span>
+                    <span>sidrasiddiqui42@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span style="font-size: 1.5rem;">📍</span>
+                    <span>Saiyadwada, Kheri Town Lakhimpur-Kheri, Uttar Pradesh 262702</span>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">My Skills ⚡</h2>
+        <div class="skills-grid">
+            <div class="glass-card skill-card">
+                <div class="skill-icon">📊</div>
+                <h3>MS Excel</h3>
+                <p>Data analysis and management</p>
+            </div>
+            <div class="glass-card skill-card">
+                <div class="skill-icon">📝</div>
+                <h3>MS Word</h3>
+                <p>Document processing and creation</p>
+            </div>
+            <div class="glass-card skill-card">
+                <div class="skill-icon">📓</div>
+                <h3>Notepad</h3>
+                <p>Text editing</p>
+            </div>
+            <div class="glass-card skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3>Photoshop</h3>
+                <p>Image editing and design</p>
+            </div>
+            <div class="glass-card skill-card">
+                <div class="skill-icon">🖌️</div>
+                <h3>MS Paint</h3>
+                <p>Basic image editing</p>
+            </div>
+            <div class="glass-card skill-card">
+                <div class="skill-icon">⌨️</div>
+                <h3>English Typing</h3>
+                <p>Fast and accurate typing</p>
+            </div>
+            <div class="glass-card skill-card">
+                <div class="skill-icon">📊</div>
+                <h3>PowerPoint</h3>
+                <p>Dynamic presentations</p>
+            </div>
+            <div class="glass-card skill-card">
+                <div class="skill-icon">💻</div>
+                <h3>MS-DOS</h3>
+                <p>Command line operations</p>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Work Experience 💼</h2>
+        <div class="timeline">
+            <div class="glass-card timeline-item">
+                <div class="timeline-date">📅 DEC 2024 - Present</div>
+                <h3>Content Creator and Designer</h3>
+                <h4>Opcode Academy</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>✨ Created posters, e-pamphlets, and other designs using Canva for marketing and promotions</li>
+                    <li>🎯 Developed content that connects with the target audience and improves brand visibility</li>
+                    <li>⏰ Delivered with ability to deliver high-quality designs on time</li>
+                </ul>
+            </div>
+ 
+            <div class="glass-card timeline-item">
+                <div class="timeline-date">📅 NOV 2023 - Jan 2024</div>
+                <h3>Junior Sales Assistant</h3>
+                <h4>Anam Com Shopy</h4>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>💼 As a fresh professional in real estate, I specialized in providing comprehensive information to customers over the phone, guiding them through property options with clarity and precision</li>
+                    <li>📞 My primary responsibilities included effectively communicating property details, addressing inquiries, and nurturing leads to conversion</li>
+                    <li>🏠 Additionally, I actively participated in site visits, ensuring a seamless transition from inquiry to purchase</li>
+                    <li>🤝 My role demanded a strong commitment to customer satisfaction, excellent communication skills, and a proactive approach to sales conversion</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Education 🎓</h2>
+        <div class="education-grid">
+            <div class="glass-card edu-card">
+                <h3>🌾 B.Sc(Hons.) Agriculture</h3>
+                <p><strong>Bhaichandra Group of Institutions, Lucknow</strong></p>
+                <p>2021 - Present</p>
+                <div class="percentage-badge">📚 Sixth Semester: 72%</div>
+            </div>
+ 
+            <div class="glass-card edu-card">
+                <h3>📖 Intermediate</h3>
+                <p><strong>City Montessori Inter College</strong></p>
+                <p>2019 - 2021</p>
+                <div class="percentage-badge">📚 Passed: 69%</div>
+            </div>
+ 
+            <div class="glass-card edu-card">
+                <h3>📚 High School</h3>
+                <p><strong>City Montessori Inter College</strong></p>
+                <p>2018-2019</p>
+                <div class="percentage-badge">📚 Passed: 72%</div>
+            </div>
+ 
+            <div class="glass-card edu-card">
+                <h3>💻 Advanced Diploma in Computer Application</h3>
+                <p>MS Excel, PowerPoint, MS Word, MS-DOS</p>
+                <div class="percentage-badge">📚 One Year Course</div>
+            </div>
+        </div>
+ 
+        <div style="margin-top: 3rem;">
+            <div class="glass-card">
+                <h3 style="color: var(--pink); font-size: 1.5rem; margin-bottom: 1rem;">📜 Additional Qualification</h3>
+                <h4 style="color: var(--cyan); font-size: 1.2rem; margin-bottom: 0.5rem;">Advanced Diploma in Computer Application</h4>
+                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;"><strong>One Year Course</strong></p>
+                <p style="font-size: 1.05rem; line-height: 1.8;">
+                    This course covers a range of Microsoft Office applications such as <strong>MS Excel</strong> for data analysis and management, <strong>PowerPoint</strong> for creating dynamic presentations, <strong>MS Word</strong> for document processing, and <strong>MS-DOS</strong> for command line operations. Additionally, it includes instruction on basic image editing.
+                </p>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Languages Section -->
+    <section id="languages">
+        <h2 class="section-title">Languages 🌍</h2>
+        <div class="language-container">
+            <div class="glass-card">
+                <div class="language-name"> English</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 85%"></div>
+                </div>
+            </div>
+            <div class="glass-card">
+                <div class="language-name">Hindi</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 95%"></div>
+                </div>
+            </div>
+            <div class="glass-card">
+                <div class="language-name"> Urdu</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 90%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Footer -->
+    <footer>
+        <p style="font-size: 1.3rem;">✨ Made with 💖 by Shidra Siddiqui ✨</p>
+        <p style="margin-top: 1rem; color: rgba(255,255,255,0.7);">© 2024 - Let's Create Something Amazing Together!</p>
+    </footer>
+ 
+</body>
+</html>
+ 
